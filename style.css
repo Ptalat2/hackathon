@@ -305,17 +305,42 @@ button:hover {
 
 #map-search input {
     font-size: 14px;
-    /* Adjust the font size to your preference */
     margin-bottom: 10px;
     width: 100px;
-
-
-    /* Add space between the input and the button */
 }
 
 #map-search button {
     font-size: 16px;
     width: 100px;
 
-    /* Adjust the font size to your preference */
+}
+
+#map-legend {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 150px;
+    height: 100px;
+
+}
+
+
+
+#map-legend .icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+#map-legend img {
+    height: 20px;
+    margin-right: 10px;
+}
+
+#map-legend p {
+    font-size: 12px;
 }
