@@ -1,0 +1,14 @@
+.hidden {
+    display: none;
+}
+.text {
+    color: black;
+    font-size: 10px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+}
