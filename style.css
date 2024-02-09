@@ -158,3 +158,25 @@ input {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
+/* Other stylings */
+
+
+h3 {
+    text-align: center;
+}
+
+.location-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.location-buttons button {
+    text-align: center;
+    flex-basis: 48%;
+}
+
+#ct-category {
+    display: flex;
+    align-items: center;
+}
