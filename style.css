@@ -12,3 +12,28 @@ body {
     height: 100vh;
     margin: 0;
 }
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+    height: 10vh;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    background-color: black;
+    height: 80vh;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+    height: 10vh;
+}
