@@ -198,3 +198,125 @@ function addMarker_2(lat, lon) {
 
 
 }
+
+
+let count = 1;
+let green;
+let red;
+// Get the bookmarks button and bookmark form
+
+
+// Initialize the map
+function initMap() {
+    if (count != 5) {
+        // Create map
+        map = L.map('map').setView([41.878, -87.6298],
+            13); // Set your initial map coordinates and zoom level.
+        map.on('load', () => {
+            map.setView([41.878, -87.6298],
+                18); // Adjust the zoom level (15 in this case) to your preference.
+        });
+        // Tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a>'
+        }).addTo(map);
+
+        // User marker
+        const userMarker = L.marker([41.878, -87.6298]).addTo(map);
+
+        // Report markers
+        const greenIcon = L.icon({
+            iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-green.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+        });
+
+        // Create red icon
+        const redIcon = L.icon({
+            iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-red.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34]
+        });
+
+        // Add markers
+        green = L.marker([41.888, -87.6298], {
+            icon: greenIcon
+        }).addTo(map);
+        red = L.marker([41.868, -87.6298], {
+            icon: redIcon
+        }).addTo(map);
+    }
+
+    // Info window on marker click
+    green.on('click', e => {
+        const popup = L.popup({
+            className: 'custom-popup'
+        }).setContent(`
+        <h5>Report Info</h5>
+        <h6>Status: Confirmed</h6> 
+        <h5>Individual caught with a firearm</h5>
+    `);
+
+        popup.setLatLng(e.latlng).openOn(map);
+    });
+
+    red.on('click', e => {
+        const popup = L.popup({
+            className: 'custom-popup'
+        }).setContent(`
+        <h5>Report Info</h5>
+        <h6>Status: UnConfirmed</h6> 
+        <h5>Individual caught trespassing</h5>
+    `);
+
+        popup.setLatLng(e.latlng).openOn(map);
+    });
+
+
+
+
+    const radioButtons = document.getElementsByName('location-option');
+
+    // Loop through the radio buttons to check if one of them is selected
+    for (const radioButton of radioButtons) {
+        if (radioButton.checked) {
+            if (radioButton.value == "Yes") {
+                // The selected radio button is found
+                console.log(radioButton.checked)
+                console.log(`Selected option: ${radioButton.value}`);
+
+                addMarker();
+            } else if (radioButton.value == "No") {
+                // const address = "123 Main St, City, State, Country";
+                let location = document.querySelector("#location").value;
+                const nominatimUrl =
+                    `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`;
+
+                fetch(nominatimUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.length > 0) {
+                            const latitude = data[0].lat;
+                            const longitude = data[0].lon;
+                            console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+                            addMarker_2(latitude, longitude)
+                        } else {
+                            console.log('Error: Unable to retrieve coordinates for the address.');
+
+                        }
+                    })
+                    .catch(error => {
+                        console.log('Error:', error);
+                    });
+
+            }
+
+        }
+    }
+
+    count = 5;
+
+
+}
