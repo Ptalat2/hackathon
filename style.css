@@ -180,3 +180,38 @@ h3 {
     display: flex;
     align-items: center;
 }
+
+#ct-category label {
+    margin-right: 10px;
+}
+
+#ct-category select {
+    flex-grow: 1;
+}
+
+#ct-details,
+#ct-time {
+    display: flex;
+    align-items: center;
+}
+
+#ct-details label,
+#ct-time label {
+    margin-right: 10px;
+}
+
+#ct-details textarea,
+#ct-time input {
+    flex-grow: 1;
+}
+
+#ct-category,
+#ct-details,
+#ct-time,
+#ct-location {
+    margin-bottom: 15px;
+}
+
+label {
+    margin-bottom: 5px;
+}
