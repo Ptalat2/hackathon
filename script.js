@@ -60,3 +60,54 @@ function validateForm() {
         return false;
     }
 }
+
+// Add click event listener
+reportBtn.addEventListener('click', () => {
+    // Change inner HTML of main
+    let category = document.querySelector("#category").value = `Select category`
+    let detail = document.querySelector("#details").value = "";
+    let location = document.querySelector("#location").value = "";
+    document.querySelector("#location").disabled = false;
+
+    let minute = document.querySelector("#minute").value = ``
+    let amPm = document.querySelector("#amPm").value = ''
+    let hour = document.querySelector("#hour").value = ''
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+    radioButtons.forEach(button => {
+        button.checked = false;
+    });
+    form.classList.remove('hidden');;
+    info.classList.add('hidden');
+    mapView.classList.add('hidden');
+    footer.classList.remove('hidden')
+    header.classList.remove('hidden');
+    bookmarksForm.classList.add('hidden');
+
+
+
+    // Function to check if the user scrolled to the bottom
+});
+
+const submitBtn = document.querySelector('.submit');
+    const confirmation = document.getElementById('report-success');
+
+    submitBtn.addEventListener('click', (e) => {
+
+        if (validateForm()) {
+            snackbar.labelText = "Report Incomplete";
+            snackbar.open();
+        } else {
+            form.classList.add('hidden');;
+            info.classList.remove('hidden');
+
+
+            setTimeout(function () {
+                // Your code to execute after a 500ms delay
+                confirmation.classList.remove('hidden');
+                setTimeout(function () {
+                    // Your code to execute after a 500ms delay
+                    confirmation.classList.add('hidden');
+                }, 3000);
+            }, 300);
+        }
+    });
