@@ -215,3 +215,40 @@ h3 {
 label {
     margin-bottom: 5px;
 }
+
+
+
+textarea,
+select,
+input {
+    /* margin-bottom: 15px; */
+    font-size: 16px;
+    padding: 8px;
+}
+
+textarea {
+    white-space: pre-wrap;
+}
+
+.submit {
+    padding: 8px 15px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #6bbee2;
+}
+
+#report-success {
+    text-align: center;
+    padding: 20px;
+    background: #43B7E7;
+    color: white;
+    border-radius: 4px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
