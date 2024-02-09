@@ -318,5 +318,130 @@ function initMap() {
 
     count = 5;
 
-
 }
+
+let radioButto = document.getElementsByName('location-option');
+
+// Loop through the radio buttons to check if one of them is selected
+for (const radioButton of radioButto) {
+
+    radioButton.addEventListener('click', e => {
+        if (radioButton.checked) {
+            if (radioButton.value == "Yes") {
+                // The selected radio button is found
+                console.log(radioButton.checked)
+                console.log(`Selected option: ${radioButton.value}`);
+                document.querySelector("#location").disabled = true;
+            } else {
+                document.querySelector("#location").disabled = false;
+
+            }
+
+        }
+
+    })
+}
+
+ // Add an event listener for a button with the ID "search"
+ search.addEventListener('click', () => {
+    // Hide footer and info elements
+    header.classList.add('hidden');
+    info.classList.add('hidden');
+    form.classList.add('hidden');
+    bookmarksForm.classList.add('hidden');
+
+    // Show the map view
+    mapView.classList.remove('hidden');
+
+    // Initialize the map
+    initMap();
+});
+
+home.addEventListener('click', () => {
+    header.classList.remove('hidden');
+    info.classList.remove('hidden');
+    form.classList.add('hidden');
+    footer.classList.remove('hidden');
+    mapView.classList.add('hidden');
+    bookmarksForm.classList.add('hidden');
+
+    // Show the map view
+    mapView.classList.add('hidden');
+})
+
+ // Get the settings button and dropdown content
+ const settingsBtn = document.getElementById('settings');
+ const settingsDropdown = document.getElementById('settingsDropdown');
+ const dropdownOptions = document.querySelectorAll('.dropdown-option');
+
+ // Add click event listener to the document to close the dropdown when clicking outside of it
+ document.addEventListener('click', function (e) {
+     if (!settingsBtn.contains(e.target) && !settingsDropdown.contains(e.target)) {
+         settingsDropdown.classList.add('hidden');
+     }
+ });
+
+
+
+ // Toggle the dropdown when clicking the settings button
+ settingsBtn.addEventListener('click', function () {
+     if (settingsDropdown.style.display === 'block') {
+         settingsDropdown.classList.add('hidden');
+     } else {
+         settingsDropdown.classList.remove('hidden');
+     }
+ });
+
+ // Handle clicks on dropdown options
+ dropdownOptions.forEach(function (option) {
+     option.addEventListener('click', function (e) {
+         // You can add logic here to handle clicks on specific options
+         // For now, we'll just log the clicked option to the console
+         console.log('Clicked on:', e.target.innerText);
+
+         // Close the dropdown
+         settingsDropdown.classList.add('hidden');
+     });
+ });
+
+
+
+ // Add click event listener to the Bookmarks button
+ bookmarksBtn.addEventListener('click', () => {
+     // Hide other sections and show the bookmark form
+     settingsDropdown.classList.add('hidden');
+     form.classList.add('hidden');
+     info.classList.add('hidden');
+     mapView.classList.add('hidden');
+     bookmarksForm.classList.remove('hidden');
+     document.getElementById('bm-name').value = '';
+     document.getElementById('bm-location').value = '';
+
+
+ });
+
+
+ // Add click event listener to the "Add Bookmark" button in the bookmark form
+
+ const addBookmarkBtn = document.querySelector('.bookmark .submit');
+ addBookmarkBtn.addEventListener('click', () => {
+     // Your code to handle bookmark submission (similar to the previous example)
+     const bookmarkName = document.getElementById('bm-name').value;
+     const bookmarkLocation = document.getElementById('bm-location').value;
+
+     // Validate that both name and location are provided
+     if (bookmarkName && bookmarkLocation) {
+         // Display the bookmark information in the main home screen under recent activity
+         const recentActivity = document.querySelector('.info');
+         const bookmarkInfo = document.createElement('p');
+         bookmarkInfo.textContent = `New Bookmark: ${bookmarkName} - ${bookmarkLocation}`;
+         recentActivity.appendChild(bookmarkInfo);
+
+         // Hide the bookmarks form
+         bookmarksForm.classList.add('hidden');
+         // Show the main home screen
+         info.classList.remove('hidden');
+     } else {
+         // Display an error message or handle the case where the user didn't provide both name and location
+     }
+ });
