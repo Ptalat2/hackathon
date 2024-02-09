@@ -111,3 +111,90 @@ const submitBtn = document.querySelector('.submit');
             }, 300);
         }
     });
+
+    function addMarker() {
+        let category = document.querySelector("#category").value;
+        let hour = document.querySelector("#hour").value;
+        let minute = document.querySelector("#minute").value;
+        let amPm = document.querySelector("#amPm").value;
+        let detail = document.querySelector("#details").value;
+        // Get current position
+        navigator.geolocation.getCurrentPosition(function (position) {
+
+            // Create marker
+            const redIcon = L.icon({
+                iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-red.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34]
+            });
+
+            map.setView([position.coords.latitude, position.coords.longitude]);
+
+            const marker = L.marker([position.coords.latitude, position.coords.longitude], {
+                icon: redIcon
+            }).addTo(map);
+
+            // Add popup
+            const popup = L.popup({
+                className: 'custom-popup'
+            });
+
+            marker.on('click', function (e) {
+                popup
+                    .setLatLng(e.latlng)
+                    .setContent(`
+        <h5>Report Info</h5>
+        <h6>Status: Unconfirmed</h6>
+       
+        <p class = "text">  Type: ${category} <br> ${detail}<br> Time: ${hour}: ${minute} ${amPm}<br></p>
+      `)
+                    .openOn(map);
+            });
+
+        });
+
+}
+
+function addMarker_2(lat, lon) {
+    let category = document.querySelector("#category").value;
+    let hour = document.querySelector("#hour").value;
+    let minute = document.querySelector("#minute").value;
+    let amPm = document.querySelector("#amPm").value;
+    let detail = document.querySelector("#details").value;
+    // Get current position
+
+    // Create marker
+    const redIcon = L.icon({
+        iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-red.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34]
+    });
+
+    map.setView([lat, lon]);
+
+    const marker = L.marker([lat, lon], {
+        icon: redIcon
+    }).addTo(map);
+
+    // Add popup
+    const popup = L.popup({
+        className: 'custom-popup'
+    });
+
+    marker.on('click', function (e) {
+        popup
+            .setLatLng(e.latlng)
+            .setContent(`
+    <h5>Report Info</h5>
+    <h6>Status: Unconfirmed</h6>
+   
+    <p class = "text">  Type: ${category} <br> ${detail}<br> Time: ${hour}: ${minute} ${amPm}<br></p>
+  `)
+            .openOn(map);
+    });
+
+
+
+}
