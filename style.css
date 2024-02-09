@@ -37,3 +37,33 @@ footer {
     color: white;
     height: 10vh;
 }
+
+button {
+    padding: 15px 20px;
+    color: black;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(to bottom, #43B7E7, #4F85E8);
+    font-family: "Ubuntu";
+    font-size: 17px;
+    text-shadow: 1px 1px 1px;
+    border-radius: 15px;
+    width: 90%;
+}
+
+.footer-button {
+    flex: 1;
+    color: black;
+    border: 2px solid;
+    cursor: pointer;
+    background-color: #43B7E7;
+    font-family: "Ubuntu";
+    font-size: 17px;
+    text-shadow: 1px 1px 1px;
+    width: 90%;
+}
+
+button img {
+    width: 30px;
+    height: 30px;
+}
