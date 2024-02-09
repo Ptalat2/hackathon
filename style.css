@@ -102,3 +102,24 @@ button img {
     width: 20px;
     height: 20px;
 }
+
+/* Form styling */
+
+form {
+    max-width: 250px;
+    margin: 20px auto;
+    position: relative;
+    top: 5px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    max-height: 330px;
+    height: auto;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: thin; /* Width of the scrollbar */
+
+    scrollbar-color: #4F85E8 transparent;
+
+}
