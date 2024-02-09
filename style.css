@@ -344,3 +344,64 @@ button:hover {
 #map-legend p {
     font-size: 12px;
 }
+
+
+/* Mobile Styles */
+
+@media (max-width: 768px) {
+    #map-legend {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        width: auto;
+        /* Let the width adjust to the content */
+        max-width: 100%;
+        /* Ensure it doesn't overflow the viewport */
+        height: auto;
+        /* Let the height adjust to the content */
+        overflow-y: auto;
+        /* Add a vertical scrollbar if necessary */
+    }
+
+
+    #map-search {
+        position: fixed;
+        left: 10px;
+    }
+
+    #map {
+        position: fixed;
+        top: 140px;
+
+    }
+
+}
+
+/* Add this to your existing styles */
+
+/* Dropdown Menu */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0;
+}
+
+.dropdown-content a {
+    padding: 12px 16px;
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Display the dropdown when hovered */
+#settings:hover .dropdown-content {
+    display: block;
+}
