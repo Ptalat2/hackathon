@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stay Safe</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+    <!-- Leaflet JS -->
+</head>
+
+<body>
+    <div id="report-success" class="hidden">
+        <p> Report <br> Successful!</p>
+    </div>
+
+    <header>
+        <button id="search">
+            <img src="images/mag-glass.png" alt="Search"><br> Search
+        </button>
+        <img src="images/logo.png" id="logo" alt="Logo">
+        <button id="settings">
+            <img src="images/settings.png" alt="Settings"> <br> Settings
+            <!-- Add a new item for Bookmarks in the dropdown -->
+            <div class="dropdown-content" id="settingsDropdown">
+                <a href="#">Account</a>
+                <a href="#">Privacy</a>
+                <a href="#" id="bookmarksBtn">Bookmarks</a>
+            </div>
+
+        </button>
+
+</body>
+
+</html>
