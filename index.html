@@ -459,15 +459,7 @@
                     title: 'Your Location'
                 });
 
-                // Update marker position as user moves
-                navigator.geolocation.watchPosition(function (position) {
-                    var newPosition = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-                    marker.setPosition(newPosition);
-                    map.setCenter(newPosition);
-                });
+              
 
                 // Show legend on map hover
                 var legend = document.querySelector('.legend');
@@ -487,20 +479,14 @@
                 map.addListener('touchend', function () {
                     legend.style.opacity = '0';
                 });
-                navigator.geolocation.watchPosition(function (position) {
-                    var newPosition = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-                    marker.setPosition(newPosition);
-                    map.setCenter(newPosition); // Optionally center the map on the new position
-                });
 
             }, function (error) {
                 console.log('Error getting user location:', error);
             });
+            
 
         }
+        
 
 
         map_tab.addEventListener('click', () => {
@@ -513,7 +499,9 @@
 
 
         })
-       
+        // google.maps.event.addListenerOnce(map, 'idle', function () {
+        //     document.getElementById('legend').classList.remove('d-none');
+        // });
     </script>
 </body>
 
