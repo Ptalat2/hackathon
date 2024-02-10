@@ -1,5 +1,4 @@
 SparkHack 2024
-
 #TRACK 2 : Empowerment
 
 ##Introducing Stay Safe: Revolutionizing Community Safety Reporting
