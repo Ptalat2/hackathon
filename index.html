@@ -634,6 +634,7 @@
 
 
         searchButton.addEventListener('click', e => {
+            e.preventDefault(); // Prevent default form submission behavior
 
             userInput = document.querySelector('#searchText').value;
             if (userInput) {
