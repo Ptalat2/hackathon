@@ -8,7 +8,8 @@
 }
 
 body{
-    background-color: #003566;
+    background-image: linear-gradient(black, #003566, #2a6f97);
+    height: 100vh;
 }
 .hidden {
     display: none;
@@ -18,7 +19,6 @@ body{
     background-color: #000814;
 }
 .report {
-    background-color: #003566;
     color:white;
 }
 
@@ -44,9 +44,7 @@ body{
     color:white;
     
 }
-.searchSection {
-    background-color: #001D3D;
-}
+
 #report-success {
     text-align: center;
     padding: 20px;
