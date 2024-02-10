@@ -92,7 +92,7 @@
     <!-- Top Half -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
-            <img src="images/logo.png" width="40" height="40" class="d-inline-block align-top" alt="Your Logo">
+            <img src="images/logo.png" width="40" height="40" class="d-inline-block align-top logo" alt="Your Logo">
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -368,30 +368,15 @@
         const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('.mdc-snackbar'));
         const bookmarksBtn = document.getElementById('bookmarksBtn');
         const bookmarksForm = document.querySelector('.bookmark');
-        submitBtn.addEventListener('click', (e) => {
+        const logo = document.querySelector(".logo");
 
-            if (validateForm()) {
-                snackbar.labelText = "Report Incomplete";
-                snackbar.open();
-            } else {
-                reportForm.classList.add('hidden');;
-                lowerHalf.classList.remove('hidden');
-                map_container.classList.add('hidden');
-                legend.classList.add('hidden');
-                reportForm.classList.add('hidden');
-
-
-
-                setTimeout(function () {
-                    // Your code to execute after a 500ms delay
-                    confirmation.classList.remove('hidden');
-                    setTimeout(function () {
-                        // Your code to execute after a 500ms delay
-                        confirmation.classList.add('hidden');
-                    }, 3000);
-                }, 300);
-            }
-        });
+        logo.addEventListener('click', () => {
+            lowerHalf.classList.remove("hidden");
+            bookmarksForm.classList.add("hidden");
+            map_container.classList.add('hidden');
+            legend.classList.add('hidden');
+            reportForm.classList.add('hidden');
+        })
 
         bookmarksBtn.addEventListener('click', () => {
             // Hide other sections and show the bookmark form
@@ -401,7 +386,7 @@
             legend.classList.add('hidden');
             reportForm.classList.add('hidden');
 
-            repo
+
             document.getElementById('bm-name').value = '';
             document.getElementById('bm-location').value = '';
         });
@@ -437,6 +422,10 @@
         var blueIcon = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
         var redIcon = 'https://maps.google.com/mapfiles/kml/shapes/caution.png';
         // Initialize Google Map
+        var map;
+
+        let i = 0;
+
         function initMap() {
             // Get user's geolocation
             navigator.geolocation.getCurrentPosition(function (position) {
@@ -446,7 +435,7 @@
                 };
 
                 // Center the map on the user's location
-                var map = new google.maps.Map(document.getElementById('map'), {
+                map = new google.maps.Map(document.getElementById('map'), {
                     center: userLocation,
                     zoom: 15
                 });
@@ -459,7 +448,7 @@
                     title: 'Your Location'
                 });
 
-              
+
 
                 // Show legend on map hover
                 var legend = document.querySelector('.legend');
@@ -483,10 +472,45 @@
             }, function (error) {
                 console.log('Error getting user location:', error);
             });
-            
+
+            i = 5;
+        }
+
+        function newMarker() {
+            if (i == 5) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    var currentLocationMarker = new google.maps.Marker({
+                        position: userLocation,
+                        map: map,
+                        icon: greenIcon,
+                        title: 'Your Location'
+                    });
+                    let category = document.querySelector("#category").value;
+                    let hour = document.querySelector("#hour").value;
+                    let minute = document.querySelector("#minute").value;
+                    let amPm = document.querySelector("#amPm").value;
+                    let detail = document.querySelector("#details").value;
+                    currentLocationMarker.addListener('click', function () {
+                        // Get and display report info in an info window
+                        var reportInfo =
+                            ` <h5>Report Info</h5>
+        <h6>Status: Unconfirmed</h6>
+       
+        <p class = "text">  Type: ${category} <br> ${detail}<br> Time: ${hour}: ${minute} ${amPm}<br></p>`; // Replace with actual report info
+                        var infoWindow = new google.maps.InfoWindow({
+                            content: reportInfo
+                        });
+                        infoWindow.open(map, currentLocationMarker);
+                    });
+                })
+            }
 
         }
-        
+
 
 
         map_tab.addEventListener('click', () => {
@@ -499,6 +523,51 @@
 
 
         })
+
+        submitBtn.addEventListener('click', (e) => {
+
+            if (validateForm()) {
+                snackbar.labelText = "Report Incomplete";
+                snackbar.open();
+            } else {
+                reportForm.classList.add('hidden');;
+                lowerHalf.classList.add('hidden');
+                map_container.classList.add('hidden');
+                legend.classList.add('hidden');
+                reportForm.classList.add('hidden');
+                const radioButtons = document.getElementsByName('location-option');
+                let yes = 0;
+                // Loop through the radio buttons to check if one of them is selected
+                for (const radioButton of radioButtons) {
+                    if (radioButton.checked) {
+                        if (radioButton.value == "Yes") {
+                            // The selected radio button is found
+                            newMarker();
+                            reportForm.classList.add('hidden');;
+                            lowerHalf.classList.add('hidden');
+                            map_container.classList.remove('hidden');
+                            legend.classList.remove('hidden');
+                            reportForm.classList.add('hidden');
+
+                        }
+
+                    }
+                }
+                setTimeout(function () {
+                    // Your code to execute after a 500ms delay
+                    confirmation.classList.remove('hidden');
+                    setTimeout(function () {
+                        // Your code to execute after a 500ms delay
+                        confirmation.classList.add('hidden');
+                    }, 3000);
+                }, 300);
+            }
+
+
+
+
+        });
+
         // google.maps.event.addListenerOnce(map, 'idle', function () {
         //     document.getElementById('legend').classList.remove('d-none');
         // });
