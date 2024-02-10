@@ -552,18 +552,18 @@
 
 
 
-        map_tab.addEventListener('click', () => {
-            lowerHalf.classList.add('hidden');
-            map_container.classList.remove('hidden');
-            legend.classList.remove('hidden');
-            bookmarksForm.classList.add("hidden");
-            reportForm.classList.add('hidden');;
-            searchSection.classList.remove('hidden');
+        // map_tab.addEventListener('click', () => {
+        //     lowerHalf.classList.add('hidden');
+        //     map_container.classList.remove('hidden');
+        //     legend.classList.remove('hidden');
+        //     bookmarksForm.classList.add("hidden");
+        //     reportForm.classList.add('hidden');;
+        //     searchSection.classList.remove('hidden');
 
-            initMap();
+        //     initMap();
 
 
-        })
+        // })
 
         submitBtn.addEventListener('click', (e) => {
 
@@ -624,6 +624,7 @@
                 reportForm.classList.add('hidden');
                 const radioButtons = document.getElementsByName('location-option');
                 let yes = 0;
+                initMap();
                 // Loop through the radio buttons to check if one of them is selected
 
 
@@ -660,7 +661,7 @@
 
         })
 
-      ;
+      
     </script>
 </body>
 
