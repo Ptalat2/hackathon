@@ -1,6 +1,7 @@
 SparkHack 2024
 #TRACK 2 : Empowerment
 
+
 ##Introducing Stay Safe: Revolutionizing Community Safety Reporting
 
 We are thrilled to unveil Stay Safe, an innovative mobile application that empowers individuals to report and access real-time updates on unusual activities in their vicinity, revolutionizing the way we respond to incidents.
