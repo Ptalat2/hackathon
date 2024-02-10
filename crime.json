@@ -1,0 +1,72 @@
+[
+    {
+        "Location": "1200 W Harrison St, Chicago, IL, USA",
+        "Category": "Assault",
+        "Details": "Occurred near the library",
+        "Time": "8:00 PM",
+        "Name": "Michael Johnson"
+    },
+    {
+        "Location": "800 S Halsted St, Chicago, IL, USA",
+        "Category": "Robbery",
+        "Details": "At the student center",
+        "Time": "11:30 AM",
+        "Name": "Emily Brown"
+    },
+    {
+        "Location": "900 W Roosevelt Rd, Chicago, IL, USA",
+        "Category": "Harassment",
+        "Details": "Near the dormitory",
+        "Time": "2:45 PM",
+        "Name": "David Martinez"
+    },
+    {
+        "Location": "1100 S Ashland Ave, Chicago, IL, USA",
+        "Category": "Vandalism",
+        "Details": "Graffiti on building walls",
+        "Time": "1:20 PM",
+        "Name": "Sarah Clark"
+    },
+    {
+        "Location": "1300 W Taylor St, Chicago, IL, USA",
+        "Category": "Burglary",
+        "Details": "At the student apartments",
+        "Time": "9:15 AM",
+        "Name": "Christopher Wilson"
+    },
+    {
+        "Location": "1000 W Roosevelt Rd, Chicago, IL, USA",
+        "Category": "Theft",
+        "Details": "Stolen bike from the bike rack",
+        "Time": "3:50 PM",
+        "Name": "Amanda Lee"
+    },
+    {
+        "Location": "1400 S Blue Island Ave, Chicago, IL, USA",
+        "Category": "Drug Possession",
+        "Details": "Drug dealing in the parking lot",
+        "Time": "7:40 PM",
+        "Name": "Brandon Davis"
+    },
+    {
+        "Location": "1500 S Racine Ave, Chicago, IL, USA",
+        "Category": "Disturbance",
+        "Details": "Loud party in the apartment building",
+        "Time": "10:10 PM",
+        "Name": "Jessica White"
+    },
+    {
+        "Location": "1600 W Roosevelt Rd, Chicago, IL, USA",
+        "Category": "Public Intoxication",
+        "Details": "Person causing disturbance on the street",
+        "Time": "4:30 AM",
+        "Name": "Ryan Taylor"
+    },
+    {
+        "Location": "1700 S Halsted St, Chicago, IL, USA",
+        "Category": "Assault",
+        "Details": "Altercation outside the gym",
+        "Time": "6:25 PM",
+        "Name": "Laura Rodriguez"
+    }
+]
