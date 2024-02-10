@@ -111,7 +111,7 @@
         "Details": "Near O'Hare International Airport",
         "Time": "N/A",
         "Name": "Hotel Near O'Hare",
-        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+        "icon": "https://maps.google.com/mapfiles/kml/shapes/caution.png"
     },
     {
         "Location": "10500 W Higgins Rd, Rosemont, IL, USA",
@@ -127,7 +127,7 @@
         "Details": "Near O'Hare International Airport",
         "Time": "N/A",
         "Name": "Restaurant Near O'Hare",
-        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+        "icon": "https://maps.google.com/mapfiles/kml/shapes/caution.png"
     },
     {
         "Location": "10100 W Irving Park Rd, Schiller Park, IL, USA",
@@ -175,7 +175,7 @@
         "Details": "Art Institute of Chicago",
         "Time": "N/A",
         "Name": "Art Institute of Chicago",
-        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+        "icon": "https://maps.google.com/mapfiles/kml/shapes/caution.png"
     },
     {
         "Location": "201 E Randolph St, Chicago, IL, USA",
@@ -183,7 +183,7 @@
         "Details": "Millennium Park",
         "Time": "N/A",
         "Name": "Millennium Park",
-        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+        "icon": "https://maps.google.com/mapfiles/kml/shapes/caution.png"
     },
     {
         "Location": "233 S Wacker Dr, Chicago, IL, USA",
@@ -199,7 +199,7 @@
         "Details": "Chicago Theatre",
         "Time": "N/A",
         "Name": "Chicago Theatre",
-        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+        "icon": "https://maps.google.com/mapfiles/kml/shapes/caution.png"
     },
     {
         "Location": "55 N Michigan Ave, Chicago, IL, USA",
@@ -215,7 +215,7 @@
         "Details": "Tribune Tower",
         "Time": "N/A",
         "Name": "Tribune Tower",
-        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+        "icon": "https://maps.google.com/mapfiles/kml/shapes/caution.png"
     },
     {
         "Location": "151 E Wacker Dr, Chicago, IL, USA",
@@ -231,7 +231,7 @@
         "Details": "Chicago Riverwalk",
         "Time": "N/A",
         "Name": "Chicago Riverwalk",
-        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+        "icon": "https://maps.google.com/mapfiles/kml/shapes/caution.png"
     },
     {
         "Location": "201 E Illinois St, Chicago, IL, USA",
@@ -247,6 +247,6 @@
         "Details": "Richard J. Daley Center",
         "Time": "N/A",
         "Name": "Richard J. Daley Center",
-        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+        "icon": "https://maps.google.com/mapfiles/kml/shapes/caution.png"
     }
 ]
