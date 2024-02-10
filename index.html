@@ -4,113 +4,409 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stay Safe</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
-    <link rel="stylesheet" href="style.css">
+    <title>Stay-safe</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVu9Hp-0ui7rd4dBNik-huYfRBLZI--TI&callback=initMap">
+    </script>
+    <!-- Your custom JavaScript -->
+    <style>
+        .hidden {
+            display: none;
+        }
 
-    <!-- Leaflet JS -->
-     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        #report-success {
+            text-align: center;
+            padding: 20px;
+            background: #43B7E7;
+            color: white;
+            border-radius: 4px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
-
-
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
     <div id="report-success" class="hidden">
         <p> Report <br> Successful!</p>
     </div>
-
-
-       
-        <!-- <div class="container-fluid">
-            <div class="image">
-                <img src="images/logo.png" id="logo" alt="Logo">
+    <aside class="mdc-snackbar" style="align-self: center">
+        <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
+            <div class="mdc-snackbar__label" aria-atomic="false">
+                Can't send photo. Retry in 5 seconds.
             </div>
-
-            <div class="row-fluid">
-        
-              <div class="col-8 form">
-        
-                    <input type="text" class="form-control form-input" placeholder="Search location">
-
-                </div>
-
-                <div class="col-4">
-                    <i class="fa-sharp fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-
-                </div>
-                
-             
-              
+            <div class="mdc-snackbar__actions" aria-atomic="true">
+                <button type="button" class="mdc-button mdc-snackbar__action">
+                    <div class="mdc-button__ripple"></div>
+                    <span class="mdc-button__label">Retry</span>
+                </button>
             </div>
-            
-          </div> -->
-          <div class="image">
-            <img src="images/logo.png" id="logo" alt="Logo">
         </div>
-          <div class="container-fluid">
+    </aside>
+
+    <!-- Top Half -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="images/logo.png" width="40" height="40" class="d-inline-block align-top" alt="Your Logo">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Settings
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" id="bookmarksBtn">Bookmark</a>
+                        <a class="dropdown-item map_tab">Search</a>
+                        <a class="dropdown-item" href="#">Resources</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div id="lowerHalf">
+        <!-- Middle Section -->
+        <div class="container mt-3">
             <div class="row">
-                <div class="col-8">
-                    <div class="form-group">
-                        <input type="text" class="form-control form-input" placeholder="Search location">
+                <div class="col">
+                    <form>
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- Lower Section -->
+        <div class="container mt-3">
+            <div class="info text-center">
+                <h1>Recent Activity</h1>
+                <p>Crime reported near "Home" 27 min ago.</p>
+                <p>Crime reported near "Work" 1 day ago.</p>
+                <p>You have officially been a Stay Safe member for 30 days!</p>
+            </div><br>
+            <div class="text-center mt-3">
+                <button type="button" class="btn btn-danger" id="reportButton">Report</button>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Bottom Section -->
+
+        <div class="container mt-3 text-center">
+            <div class="row">
+                <div class="col">
+                    <h2>Hotline Numbers</h2>
+                    <p>Emergency: 911</p>
+                    <p>Non-Emergency: 311</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report section -->
+
+    <div id="reportForm" class="hidden text-center">
+        <form>
+            <h1 class="text-center">Report Crime</h1>
+
+            <div class="form-group">
+                <label class="font-weight-bold">Use Current Location?</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="location-option" id="use-location-yes"
+                        value="Yes">
+                    <label class="form-check-label" for="use-location-yes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="location-option" id="use-location-no" value="No">
+                    <label class="form-check-label" for="use-location-no">No</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <textarea class="form-control" id="location"
+                    placeholder="Enter location: 123 Main St, City, State, Country"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select class="form-control" id="category">
+                    <option>Select category</option>
+                    <option>Assault</option>
+                    <option>Robbery</option>
+                    <option>Harassment</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="details">Details:</label>
+                <textarea class="form-control" id="details" placeholder="Enter details"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="time">Time:</label>
+                <div class="row">
+                    <div class="col">
+                        <select class="form-control" id="hour">
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class="form-control" id="minute">
+                            <option value="00">00</option>
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class="form-control" id="amPm">
+                            <option value="AM">AM</option>
+                            <option value="PM">PM</option>
+                        </select>
                     </div>
                 </div>
-                <div class="col-2">
-                    <button class="btn btn-primary"><i class="fa fa-search"></i></button>
-                    <!-- <i class="fa-sharp fa-solid fa-magnifying-glass" style="color: #ffffff;"></i> -->
-
-                </div>
-                <div class="col-2 align-center">
-                    <!-- <button class="btn btn-primary"><i class="fa fa-search"></i></button> -->
-                    <button class="btn btn-primary"><i class="fa fa-gear"></i></button>
-
-                    <!-- <i class="fa-solid fa-gear" style="color: #f7f7f7;"></i> -->
-
-                </div>
-                
             </div>
+
+            <button type="button" class="btn btn-primary btn-block submit-1">Send Report</button>
+        </form>
+    </div>
+    <!-- Bookmark section -->
+    <form class="hidden bookmark text-center">
+        <h1 class="display-4">Add Bookmark</h1>
+
+        <div class="form-group">
+            <label for="bm-name">Name:</label>
+            <textarea class="form-control" id="bm-name" placeholder="Enter name"></textarea>
         </div>
-        
 
-        <!-- <button id="settings">
-            <img src="images/settings.png" alt="Settings"> <br> Settings
-            <div class="dropdown-content" id="settingsDropdown">
-                <a href="#">Account</a>
-                <a href="#">Privacy</a>
-                <a href="#" id="bookmarksBtn">Bookmarks</a>
-            </div>
+        <div class="form-group">
+            <label for="bm-location">Location:</label>
+            <textarea class="form-control" id="bm-location" placeholder="Enter location"></textarea>
+        </div>
 
-        </button> -->
-    
-    
+        <button type="button" class="btn btn-primary r_submit">Add Bookmark</button>
+    </form>
 
-    <main>
+    <!-- Map -->
+    <!-- Google Maps Container -->
+    <div class="container mt-4 hidden map_container">
+        <div id="map"></div>
+    </div>
 
-        <aside class="mdc-snackbar" style="align-self: center">
-            <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
-                <div class="mdc-snackbar__label" aria-atomic="false">
-                    Can't send photo. Retry in 5 seconds.
-                </div>
-                <div class="mdc-snackbar__actions" aria-atomic="true">
-                    <button type="button" class="mdc-button mdc-snackbar__action">
-                        <div class="mdc-button__ripple"></div>
-                        <span class="mdc-button__label">Retry</span>
-                    </button>
-                </div>
-            </div>
-        </aside>
+    <script>
+        const reportButton = document.getElementById('reportButton');
+        const reportForm = document.getElementById('reportForm');
+        const lowerHalf = document.getElementById('lowerHalf');
+        const reportBtn = document.getElementById('report');
+        const map_container = document.querySelector('.map_container');
+        const map_tab = document.querySelector('.map_tab');
 
-     
 
-       </main>
-    <script src = "script.js"></script>
+        function validateForm() {
+            // const location = document.getElementById('location').value;
+            const category = document.getElementById('category').value;
+            const details = document.getElementById('details').value;
+            const radioButtons = document.getElementsByName('location-option');
+            let yes = 0;
+            // Loop through the radio buttons to check if one of them is selected
+            for (const radioButton of radioButtons) {
+                if (radioButton.checked) {
+                    if (radioButton.value == "Yes") {
+                        // The selected radio button is found
+                        yes = 5;
 
+                    }
+
+                }
+            }
+
+            if (category === 'Select category' || details.trim() === '') {
+                return true;
+                // You can also show an alert or perform other actions to notify the user.
+                // } else {
+                return false;
+            }
+        }
+        reportButton.addEventListener('click', () => {
+            let category = document.querySelector("#category").value = `Select category`
+            let detail = document.querySelector("#details").value = "";
+            let location = document.querySelector("#location").value = "";
+            document.querySelector("#location").disabled = false;
+
+            let minute = document.querySelector("#minute").value = ``
+            let amPm = document.querySelector("#amPm").value = ''
+            let hour = document.querySelector("#hour").value = ''
+            const radioButtons = document.querySelectorAll('input[type="radio"]');
+            radioButtons.forEach(button => {
+                button.checked = false;
+            });
+            reportForm.classList.toggle('hidden');
+            lowerHalf.classList.add('hidden');
+            bookmarksForm.classList.add("hidden");
+
+        });
+
+        let radioButto = document.getElementsByName('location-option');
+
+        // Loop through the radio buttons to check if one of them is selected
+        for (const radioButton of radioButto) {
+
+            radioButton.addEventListener('click', e => {
+                if (radioButton.checked) {
+                    if (radioButton.value == "Yes") {
+                        // The selected radio button is found
+                        console.log(radioButton.checked)
+                        console.log(`Selected option: ${radioButton.value}`);
+                        document.querySelector("#location").disabled = true;
+                    } else {
+                        document.querySelector("#location").disabled = false;
+
+                    }
+
+                }
+
+            })
+        }
+
+
+        const submitBtn = document.querySelector('.submit-1');
+        const confirmation = document.getElementById('report-success');
+        const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('.mdc-snackbar'));
+        const bookmarksBtn = document.getElementById('bookmarksBtn');
+        const bookmarksForm = document.querySelector('.bookmark');
+        submitBtn.addEventListener('click', (e) => {
+
+            if (validateForm()) {
+                snackbar.labelText = "Report Incomplete";
+                snackbar.open();
+            } else {
+                reportForm.classList.add('hidden');;
+                lowerHalf.classList.remove('hidden');
+
+
+                setTimeout(function () {
+                    // Your code to execute after a 500ms delay
+                    confirmation.classList.remove('hidden');
+                    setTimeout(function () {
+                        // Your code to execute after a 500ms delay
+                        confirmation.classList.add('hidden');
+                    }, 3000);
+                }, 300);
+            }
+        });
+
+        bookmarksBtn.addEventListener('click', () => {
+            // Hide other sections and show the bookmark form
+            lowerHalf.classList.add("hidden");
+            bookmarksForm.classList.remove("hidden");
+            document.getElementById('bm-name').value = '';
+            document.getElementById('bm-location').value = '';
+        });
+        const addBookmarkBtn = document.querySelector('.bookmark .r_submit');
+
+        addBookmarkBtn.addEventListener('click', () => {
+            // Your code to handle bookmark submission (similar to the previous example)
+            const bookmarkName = document.getElementById('bm-name').value;
+            const bookmarkLocation = document.getElementById('bm-location').value;
+
+            // Validate that both name and location are provided
+            if (bookmarkName && bookmarkLocation) {
+                // Display the bookmark information in the main home screen under recent activity
+                const recentActivity = document.querySelector('.info');
+                const bookmarkInfo = document.createElement('p');
+                bookmarkInfo.textContent = `New Bookmark: ${bookmarkName} - ${bookmarkLocation}`;
+                recentActivity.appendChild(bookmarkInfo);
+
+                // Hide the bookmarks form
+                bookmarksForm.classList.add('hidden');
+                // Show the main home screen
+                reportForm.classList.add('hidden');
+                lowerHalf.classList.remove('hidden');
+                bookmarksForm.classList.add("hidden");
+            } else {
+                snackbar.labelText = "Incomplete";
+                snackbar.open();
+            }
+        });
+        // Initialize Google Map
+        function initMap() {
+            // Get user's geolocation
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var userLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                // Center the map on the user's location
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: userLocation,
+                    zoom: 15
+                });
+
+                // Add a marker at the user's location
+                var marker = new google.maps.Marker({
+                    position: userLocation,
+                    map: map,
+                    title: 'Your Location'
+                });
+            });
+        }
+
+        map_tab.addEventListener('click', () => {
+            lowerHalf.classList.add('hidden');
+            map_container.classList.remove('hidden');
+            initMap();
+
+
+        })
+    </script>
 </body>
 
 </html>
