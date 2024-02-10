@@ -16,9 +16,9 @@
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW0JvSB9UHidmU81bxU36qnsSk6KuTYck" async="" defer="defer"
-        type="text/javascript"></script>
- 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW0JvSB9UHidmU81bxU36qnsSk6KuTYck" async=""
+        defer="defer" type="text/javascript"></script>
+
 
     <!-- Your custom JavaScript -->
     <style>
@@ -39,8 +39,34 @@
         }
 
         #map {
-            height: 400px;
+            height: 700px;
             width: 100%;
+        }
+
+        #legend {
+            background-color: #fff;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 20px;
+            /* Adjust as needed */
+            left: 20px;
+            /* Adjust as needed */
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .legend-item {
+            margin-bottom: 5px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -240,6 +266,19 @@
     <!-- Google Maps Container -->
     <div class="container mt-4 hidden map_container">
         <div id="map"></div>
+
+    </div>
+
+    <div id="legend" class="legend hidden">
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: blue;"></div>
+            UnConfirmed
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: red;"></div>
+            Confirmed
+        </div>
+        <!-- Add more legend items as needed -->
     </div>
 
     <script>
@@ -249,7 +288,7 @@
         const reportBtn = document.getElementById('report');
         const map_container = document.querySelector('.map_container');
         const map_tab = document.querySelector('.map_tab');
-
+        const legend = document.querySelector('.legend');
 
         function validateForm() {
             // const location = document.getElementById('location').value;
@@ -391,6 +430,23 @@
                     center: userLocation,
                     zoom: 15
                 });
+                var legend = document.querySelector('.legend');
+                map.addListener('mouseover', function () {
+                    legend.style.opacity = '1';
+                });
+                map.addListener('mouseout', function () {
+                    legend.style.opacity = '0';
+                })
+
+                map.addListener('touchstart', function () {
+                    legend.style.opacity = '1';
+                });
+
+                // Hide legend on map touchend
+                map.addListener('touchend', function () {
+                    legend.style.opacity = '0';
+                });
+
 
                 // Add a marker at the user's location
                 var marker = new google.maps.Marker({
@@ -399,15 +455,21 @@
                     title: 'Your Location'
                 });
             });
+
+
         }
 
         map_tab.addEventListener('click', () => {
             lowerHalf.classList.add('hidden');
             map_container.classList.remove('hidden');
+            legend.classList.remove('hidden');
             initMap();
 
 
         })
+        // google.maps.event.addListenerOnce(map, 'idle', function () {
+        //     document.getElementById('legend').classList.remove('d-none');
+        // });
     </script>
 </body>
 
