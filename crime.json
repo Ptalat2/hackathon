@@ -4,69 +4,249 @@
         "Category": "Assault",
         "Details": "Occurred near the library",
         "Time": "8:00 PM",
-        "Name": "Michael Johnson"
+        "Name": "Michael Johnson",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+        
     },
     {
         "Location": "800 S Halsted St, Chicago, IL, USA",
         "Category": "Robbery",
         "Details": "At the student center",
         "Time": "11:30 AM",
-        "Name": "Emily Brown"
+        "Name": "Emily Brown",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+
     },
     {
         "Location": "900 W Roosevelt Rd, Chicago, IL, USA",
         "Category": "Harassment",
         "Details": "Near the dormitory",
         "Time": "2:45 PM",
-        "Name": "David Martinez"
+        "Name": "David Martinez",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+
     },
     {
         "Location": "1100 S Ashland Ave, Chicago, IL, USA",
         "Category": "Vandalism",
         "Details": "Graffiti on building walls",
         "Time": "1:20 PM",
-        "Name": "Sarah Clark"
+        "Name": "Sarah Clark",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+
     },
     {
         "Location": "1300 W Taylor St, Chicago, IL, USA",
         "Category": "Burglary",
         "Details": "At the student apartments",
         "Time": "9:15 AM",
-        "Name": "Christopher Wilson"
+        "Name": "Christopher Wilson",
+        "icon": "https://maps.google.com/mapfiles/kml/shapes/caution.png"
+
     },
     {
         "Location": "1000 W Roosevelt Rd, Chicago, IL, USA",
         "Category": "Theft",
         "Details": "Stolen bike from the bike rack",
         "Time": "3:50 PM",
-        "Name": "Amanda Lee"
+        "Name": "Amanda Lee",
+        "icon": "https://maps.google.com/mapfiles/kml/shapes/caution.png"
+
     },
     {
         "Location": "1400 S Blue Island Ave, Chicago, IL, USA",
         "Category": "Drug Possession",
         "Details": "Drug dealing in the parking lot",
         "Time": "7:40 PM",
-        "Name": "Brandon Davis"
+        "Name": "Brandon Davis",
+        "icon": "https://maps.google.com/mapfiles/kml/shapes/caution.png"
+
     },
     {
         "Location": "1500 S Racine Ave, Chicago, IL, USA",
         "Category": "Disturbance",
         "Details": "Loud party in the apartment building",
         "Time": "10:10 PM",
-        "Name": "Jessica White"
+        "Name": "Jessica White",
+        "icon": "https://maps.google.com/mapfiles/kml/shapes/caution.png"
+
     },
     {
         "Location": "1600 W Roosevelt Rd, Chicago, IL, USA",
         "Category": "Public Intoxication",
         "Details": "Person causing disturbance on the street",
         "Time": "4:30 AM",
-        "Name": "Ryan Taylor"
+        "Name": "Ryan Taylor",
+        "icon": "https://maps.google.com/mapfiles/kml/shapes/caution.png"
+
     },
     {
         "Location": "1700 S Halsted St, Chicago, IL, USA",
         "Category": "Assault",
         "Details": "Altercation outside the gym",
         "Time": "6:25 PM",
-        "Name": "Laura Rodriguez"
+        "Name": "Laura Rodriguez",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+
+    },
+    {
+        "Location": "10000 W O'Hare Ave, Chicago, IL, USA",
+        "Category": "Airport",
+        "Details": "O'Hare International Airport",
+        "Time": "N/A",
+        "Name": "O'Hare International Airport",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "10000 Bessie Coleman Dr, Chicago, IL, USA",
+        "Category": "Airport",
+        "Details": "Chicago O'Hare International Airport",
+        "Time": "N/A",
+        "Name": "Chicago O'Hare International Airport",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "10200 W Irving Park Rd, Schiller Park, IL, USA",
+        "Category": "Hotel",
+        "Details": "Near O'Hare International Airport",
+        "Time": "N/A",
+        "Name": "Hotel Near O'Hare",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "10500 W Higgins Rd, Rosemont, IL, USA",
+        "Category": "Hotel",
+        "Details": "Near O'Hare International Airport",
+        "Time": "N/A",
+        "Name": "Hotel Near O'Hare",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "10233 W Irving Park Rd, Schiller Park, IL, USA",
+        "Category": "Restaurant",
+        "Details": "Near O'Hare International Airport",
+        "Time": "N/A",
+        "Name": "Restaurant Near O'Hare",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "10100 W Irving Park Rd, Schiller Park, IL, USA",
+        "Category": "Gas Station",
+        "Details": "Near O'Hare International Airport",
+        "Time": "N/A",
+        "Name": "Gas Station Near O'Hare",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "10000 W Irving Park Rd, Schiller Park, IL, USA",
+        "Category": "Car Rental",
+        "Details": "Near O'Hare International Airport",
+        "Time": "N/A",
+        "Name": "Car Rental Near O'Hare",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "10000 W Higgins Rd, Rosemont, IL, USA",
+        "Category": "Parking Lot",
+        "Details": "Near O'Hare International Airport",
+        "Time": "N/A",
+        "Name": "Parking Lot Near O'Hare",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "10000 Balmoral Ave, Rosemont, IL, USA",
+        "Category": "Parking Garage",
+        "Details": "Near O'Hare International Airport",
+        "Time": "N/A",
+        "Name": "Parking Garage Near O'Hare",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "10201 W Zemke Blvd, Chicago, IL, USA",
+        "Category": "Airport Cargo Facility",
+        "Details": "Near O'Hare International Airport",
+        "Time": "N/A",
+        "Name": "Cargo Facility Near O'Hare",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "1 E Jackson Blvd, Chicago, IL, USA",
+        "Category": "Landmark",
+        "Details": "Art Institute of Chicago",
+        "Time": "N/A",
+        "Name": "Art Institute of Chicago",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "201 E Randolph St, Chicago, IL, USA",
+        "Category": "Landmark",
+        "Details": "Millennium Park",
+        "Time": "N/A",
+        "Name": "Millennium Park",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "233 S Wacker Dr, Chicago, IL, USA",
+        "Category": "Building",
+        "Details": "Willis Tower",
+        "Time": "N/A",
+        "Name": "Willis Tower",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "50 E Washington St, Chicago, IL, USA",
+        "Category": "Landmark",
+        "Details": "Chicago Theatre",
+        "Time": "N/A",
+        "Name": "Chicago Theatre",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "55 N Michigan Ave, Chicago, IL, USA",
+        "Category": "Landmark",
+        "Details": "Wrigley Building",
+        "Time": "N/A",
+        "Name": "Wrigley Building",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "401 N Michigan Ave, Chicago, IL, USA",
+        "Category": "Building",
+        "Details": "Tribune Tower",
+        "Time": "N/A",
+        "Name": "Tribune Tower",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "151 E Wacker Dr, Chicago, IL, USA",
+        "Category": "Building",
+        "Details": "LondonHouse Chicago",
+        "Time": "N/A",
+        "Name": "LondonHouse Chicago",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "233 N Michigan Ave, Chicago, IL, USA",
+        "Category": "Landmark",
+        "Details": "Chicago Riverwalk",
+        "Time": "N/A",
+        "Name": "Chicago Riverwalk",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "201 E Illinois St, Chicago, IL, USA",
+        "Category": "Landmark",
+        "Details": "Navy Pier",
+        "Time": "N/A",
+        "Name": "Navy Pier",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
+    },
+    {
+        "Location": "201 N State St, Chicago, IL, USA",
+        "Category": "Building",
+        "Details": "Richard J. Daley Center",
+        "Time": "N/A",
+        "Name": "Richard J. Daley Center",
+        "icon": "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png"
     }
 ]
