@@ -239,7 +239,7 @@
             Confirmed
         </div>
         <div class="legend-item">
-            <img class="legend-color" src="https://maps.google.com/mapfiles/kml/shapes/campground.png">
+            <img class="legend-color" src="https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png">
             UnConfirmed
         </div>
     </div>
@@ -257,7 +257,7 @@
         let search_t = document.getElementById('searchText');
         var blueIcon = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
         var redIcon = 'https://maps.google.com/mapfiles/kml/shapes/caution.png';
-        var greenIcon = 'https://maps.google.com/mapfiles/kml/shapes/campground.png';
+        var yellowIcon = 'https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png';
 
         function validateForm() {
             // const location = document.getElementById('location').value;
@@ -448,6 +448,8 @@
             i = 5;
         }
 
+
+
         function newMarker() {
             if (i == 5) {
                 navigator.geolocation.getCurrentPosition(function (position) {
@@ -458,7 +460,7 @@
                     var currentLocationMarker = new google.maps.Marker({
                         position: userLocation,
                         map: map,
-                        icon: greenIcon,
+                        icon: yellowIcon,
                         title: 'Your Location'
                     });
                     let category = document.querySelector("#category").value;
@@ -483,6 +485,67 @@
 
         }
 
+        function addMarker(location) {
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        }
+
+        function addReportmarker(geocoder, address) {
+            console.log("this the address: " + address);
+            geocoder.geocode({
+                'address': address
+            }, function (results, status) {
+                if (status === 'OK') {
+                    var userLocation = results[0].geometry.location;
+                    var currentLocationMarker = new google.maps.Marker({
+                        position: userLocation,
+                        map: map,
+                        icon: yellowIcon,
+                        title: 'Your Location'
+                    });
+                    let category = document.querySelector("#category").value;
+                    let hour = document.querySelector("#hour").value;
+                    let minute = document.querySelector("#minute").value;
+                    let amPm = document.querySelector("#amPm").value;
+                    let detail = document.querySelector("#details").value;
+                    currentLocationMarker.addListener('click', function () {
+                        // Get and display report info in an info window
+                        var reportInfo =
+                            ` <h5>Report Info</h5>
+        <h6>Status: Unconfirmed</h6>
+       
+        <p class = "text">  Type: ${category} <br> ${detail}<br> Time: ${hour}: ${minute} ${amPm}<br></p>`; // Replace with actual report info
+                        var infoWindow = new google.maps.InfoWindow({
+                            content: reportInfo
+                        });
+                        infoWindow.open(map, currentLocationMarker);
+                    });
+
+                    map.setCenter(userLocation); // Centering the map
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+
+
+            });
+        }
+
+        function geocodeAddress(geocoder, address) {
+            geocoder.geocode({
+                'address': address
+            }, function (results, status) {
+                if (status === 'OK') {
+                    var userLocation = results[0].geometry.location;
+                    addMarker(userLocation);
+                    map.setCenter(userLocation); // Centering the map
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+
 
 
         map_tab.addEventListener('click', () => {
@@ -504,6 +567,52 @@
                 snackbar.labelText = "Report Incomplete";
                 snackbar.open();
             } else {
+                setTimeout(function () {
+                    // Your code to execute after a 500ms delay
+                    confirmation.classList.remove('hidden');
+                    setTimeout(function () {
+                        // Your code to execute after a 500ms delay
+                        confirmation.classList.add('hidden');
+                        for (const radioButton of radioButtons) {
+                            if (radioButton.checked) {
+                                if (radioButton.value == "Yes") {
+                                    // The selected radio button is found
+                                    newMarker();
+                                    reportForm.classList.add('hidden');;
+                                    lowerHalf.classList.add('hidden');
+                                    map_container.classList.remove('hidden');
+                                    legend.classList.remove('hidden');
+                                    reportForm.classList.add('hidden');
+                                    searchSection.classList.remove('hidden');
+
+                                } else if (radioButton.value == "No") {
+                                    var Input = document.querySelector("#location").value;
+                                    console.log(Input);
+                                    if (Input) {
+                                        var geocoder = new google.maps.Geocoder();
+                                        addReportmarker(geocoder, Input);
+                                    } else {
+                                        alert(
+                                            "No address entered. Please enter a valid address."
+                                        );
+                                    }
+
+
+
+                                    reportForm.classList.add('hidden');;
+                                    lowerHalf.classList.add('hidden');
+                                    map_container.classList.remove('hidden');
+                                    legend.classList.remove('hidden');
+                                    reportForm.classList.add('hidden');
+                                    searchSection.classList.remove('hidden');
+                                }
+
+                            }
+
+
+                        }
+                    }, 1500);
+                }, 100);
                 reportForm.classList.add('hidden');;
                 lowerHalf.classList.add('hidden');
                 map_container.classList.add('hidden');
@@ -512,30 +621,8 @@
                 const radioButtons = document.getElementsByName('location-option');
                 let yes = 0;
                 // Loop through the radio buttons to check if one of them is selected
-                for (const radioButton of radioButtons) {
-                    if (radioButton.checked) {
-                        if (radioButton.value == "Yes") {
-                            // The selected radio button is found
-                            newMarker();
-                            reportForm.classList.add('hidden');;
-                            lowerHalf.classList.add('hidden');
-                            map_container.classList.remove('hidden');
-                            legend.classList.remove('hidden');
-                            reportForm.classList.add('hidden');
-                            searchSection.classList.remove('hidden');
 
-                        }
 
-                    }
-                }
-                setTimeout(function () {
-                    // Your code to execute after a 500ms delay
-                    confirmation.classList.remove('hidden');
-                    setTimeout(function () {
-                        // Your code to execute after a 500ms delay
-                        confirmation.classList.add('hidden');
-                    }, 3000);
-                }, 300);
             }
 
 
@@ -543,26 +630,6 @@
 
         });
 
-        function addMarker(location) {
-            var marker = new google.maps.Marker({
-                position: location,
-                map: map
-            });
-        }
-
-        function geocodeAddress(geocoder, address) {
-            geocoder.geocode({
-                'address': address
-            }, function (results, status) {
-                if (status === 'OK') {
-                    var userLocation = results[0].geometry.location;
-                    addMarker(userLocation);
-                    map.setCenter(userLocation); // Centering the map
-                } else {
-                    alert('Geocode was not successful for the following reason: ' + status);
-                }
-            });
-        }
 
         searchButton.addEventListener('click', e => {
 
@@ -589,7 +656,7 @@
 
         })
 
- 
+        
     </script>
 </body>
 
