@@ -1,7 +1,52 @@
+.font1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.font2{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body{
+    background-color: #003566;
+}
 .hidden {
     display: none;
 }
 
+.navbar{
+    background-color: #000814;
+}
+.report {
+    background-color: #003566;
+    color:white;
+}
+
+.report-title{
+    color: red;
+}
+.hotline-title{
+    color: red; 
+}
+.hotline{
+    color:#FFB703;
+
+}
+
+.bookmark-title{
+    color: green;
+}
+
+.form-group {
+    color: white;
+}
+#reportForm .bookmark{
+    color:white;
+    
+}
+.searchSection {
+    background-color: #001D3D;
+}
 #report-success {
     text-align: center;
     padding: 20px;
@@ -13,6 +58,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 
 #map {
     height: 600px;

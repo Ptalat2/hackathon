@@ -46,21 +46,21 @@
     </aside>
 
     <!-- Top Half -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="#">
             <img src="images/logo.png" width="40" height="40" class="d-inline-block align-top logo" alt="Your Logo">
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon menu-button"></span>
         </button>
 
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Settings
                     </a>
@@ -75,7 +75,7 @@
     </nav>
     <div class="searchSection">
 
-        <div class="container mt-3">
+        <div class="container pt-3 pb-3">
             <div class="row">
                 <div class="col">
                     <form>
@@ -96,30 +96,27 @@
 
     <div id="lowerHalf">
         <!-- Middle Section -->
-
-        <hr>
         <!-- Lower Section -->
-        <div class="container mt-3">
+        <div class="container mt-3 report">
             <div class="info text-center">
-                <h1>Recent Activity</h1>
-                <p>Crime reported near "Home" 27 min ago.</p>
-                <p>Crime reported near "Work" 1 day ago.</p>
-                <p>You have officially been a Stay Safe member for 30 days!</p>
+                <h1 class = "font1 report-title">Recent Activity</h1>
+                <p class = "font2">Crime reported near "Home" 27 min ago.</p>
+                <p class = "font2">Crime reported near "Work" 1 day ago.</p>
+                <p class = "font2">You have officially been a Stay Safe member for 30 days!</p>
             </div><br>
-            <div class="text-center mt-3">
-                <button type="button" class="btn btn-danger" id="reportButton">Report</button>
+            <div class="text-center pt-3">
+                <button type="button" class="btn btn-danger font1" id="reportButton">Report</button>
             </div>
         </div>
-        <hr>
 
         <!-- Bottom Section -->
 
-        <div class="container mt-3 text-center">
+        <div class="container mt-3 text-center hotline">
             <div class="row">
                 <div class="col">
-                    <h2>Hotline Numbers</h2>
-                    <p>Emergency: 911</p>
-                    <p>Non-Emergency: 311</p>
+                    <h2 class = "font1 hotline-title">Hotline Numbers</h2>
+                    <p class = "font2">Emergency: 911</p>
+                    <p class = "font2">Non-Emergency: 311</p>
                 </div>
             </div>
         </div>
@@ -129,7 +126,7 @@
 
     <div id="reportForm" class="hidden text-center">
         <form>
-            <h1 class="text-center">Report Crime</h1>
+            <h1 class="text-center font1 report-title">Report Crime</h1>
 
             <div class="form-group">
                 <label class="font-weight-bold">Use Current Location?</label>
@@ -207,15 +204,15 @@
     </div>
     <!-- Bookmark section -->
     <form class="hidden bookmark text-center">
-        <h1 class="display-4">Add Bookmark</h1>
+        <h1 class="display-4 bookmark-title font1">Bookmark</h1>
 
         <div class="form-group">
-            <label for="bm-name">Name:</label>
+            <label for="bm-name" class = "font2">Name:</label>
             <textarea class="form-control" id="bm-name" placeholder="Enter name"></textarea>
         </div>
 
         <div class="form-group">
-            <label for="bm-location">Location:</label>
+            <label for="bm-location" class = "font2">Location:</label>
             <textarea class="form-control" id="bm-location" placeholder="Enter location"></textarea>
         </div>
 
