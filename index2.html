@@ -15,6 +15,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW0JvSB9UHidmU81bxU36qnsSk6KuTYck" async="" defer="defer"
+        type="text/javascript"></script>
+ 
+
+    <!-- Your custom JavaScript -->
     <style>
         .hidden {
             display: none;
@@ -30,6 +36,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+        }
+
+        #map {
+            height: 400px;
+            width: 100%;
         }
     </style>
 </head>
@@ -72,8 +83,8 @@
                         Settings
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Bookmark</a>
-                        <a class="dropdown-item" href="#">Search</a>
+                        <a class="dropdown-item" id="bookmarksBtn">Bookmark</a>
+                        <a class="dropdown-item map_tab">Search</a>
                         <a class="dropdown-item" href="#">Resources</a>
                     </div>
                 </li>
@@ -208,12 +219,37 @@
             <button type="button" class="btn btn-primary btn-block submit-1">Send Report</button>
         </form>
     </div>
+    <!-- Bookmark section -->
+    <form class="hidden bookmark text-center">
+        <h1 class="display-4">Add Bookmark</h1>
+
+        <div class="form-group">
+            <label for="bm-name">Name:</label>
+            <textarea class="form-control" id="bm-name" placeholder="Enter name"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="bm-location">Location:</label>
+            <textarea class="form-control" id="bm-location" placeholder="Enter location"></textarea>
+        </div>
+
+        <button type="button" class="btn btn-primary r_submit">Add Bookmark</button>
+    </form>
+
+    <!-- Map -->
+    <!-- Google Maps Container -->
+    <div class="container mt-4 hidden map_container">
+        <div id="map"></div>
+    </div>
 
     <script>
         const reportButton = document.getElementById('reportButton');
         const reportForm = document.getElementById('reportForm');
         const lowerHalf = document.getElementById('lowerHalf');
         const reportBtn = document.getElementById('report');
+        const map_container = document.querySelector('.map_container');
+        const map_tab = document.querySelector('.map_tab');
+
 
         function validateForm() {
             // const location = document.getElementById('location').value;
@@ -236,7 +272,7 @@
             if (category === 'Select category' || details.trim() === '') {
                 return true;
                 // You can also show an alert or perform other actions to notify the user.
-            } else {
+                // } else {
                 return false;
             }
         }
@@ -255,6 +291,8 @@
             });
             reportForm.classList.toggle('hidden');
             lowerHalf.classList.add('hidden');
+            bookmarksForm.classList.add("hidden");
+
         });
 
         let radioButto = document.getElementsByName('location-option');
@@ -283,7 +321,8 @@
         const submitBtn = document.querySelector('.submit-1');
         const confirmation = document.getElementById('report-success');
         const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('.mdc-snackbar'));
-
+        const bookmarksBtn = document.getElementById('bookmarksBtn');
+        const bookmarksForm = document.querySelector('.bookmark');
         submitBtn.addEventListener('click', (e) => {
 
             if (validateForm()) {
@@ -304,6 +343,71 @@
                 }, 300);
             }
         });
+
+        bookmarksBtn.addEventListener('click', () => {
+            // Hide other sections and show the bookmark form
+            lowerHalf.classList.add("hidden");
+            bookmarksForm.classList.remove("hidden");
+            document.getElementById('bm-name').value = '';
+            document.getElementById('bm-location').value = '';
+        });
+        const addBookmarkBtn = document.querySelector('.bookmark .r_submit');
+
+        addBookmarkBtn.addEventListener('click', () => {
+            // Your code to handle bookmark submission (similar to the previous example)
+            const bookmarkName = document.getElementById('bm-name').value;
+            const bookmarkLocation = document.getElementById('bm-location').value;
+
+            // Validate that both name and location are provided
+            if (bookmarkName && bookmarkLocation) {
+                // Display the bookmark information in the main home screen under recent activity
+                const recentActivity = document.querySelector('.info');
+                const bookmarkInfo = document.createElement('p');
+                bookmarkInfo.textContent = `New Bookmark: ${bookmarkName} - ${bookmarkLocation}`;
+                recentActivity.appendChild(bookmarkInfo);
+
+                // Hide the bookmarks form
+                bookmarksForm.classList.add('hidden');
+                // Show the main home screen
+                reportForm.classList.add('hidden');
+                lowerHalf.classList.remove('hidden');
+                bookmarksForm.classList.add("hidden");
+            } else {
+                snackbar.labelText = "Incomplete";
+                snackbar.open();
+            }
+        });
+        // Initialize Google Map
+        function initMap() {
+            // Get user's geolocation
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var userLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                // Center the map on the user's location
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: userLocation,
+                    zoom: 15
+                });
+
+                // Add a marker at the user's location
+                var marker = new google.maps.Marker({
+                    position: userLocation,
+                    map: map,
+                    title: 'Your Location'
+                });
+            });
+        }
+
+        map_tab.addEventListener('click', () => {
+            lowerHalf.classList.add('hidden');
+            map_container.classList.remove('hidden');
+            initMap();
+
+
+        })
     </script>
 </body>
 
