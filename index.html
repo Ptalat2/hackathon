@@ -17,59 +17,14 @@
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 
     <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW0JvSB9UHidmU81bxU36qnsSk6KuTYck&loading=async&callback=initMap">
-</script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW0JvSB9UHidmU81bxU36qnsSk6KuTYck&loading=async&callback=initMap">
+    </script>
+
+    <link rel="stylesheet" href="style.css">
 
 
     <!-- Your custom JavaScript -->
-    <style>
-        .hidden {
-            display: none;
-        }
 
-        #report-success {
-            text-align: center;
-            padding: 20px;
-            background: #43B7E7;
-            color: white;
-            border-radius: 4px;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        #map {
-            height: 600px;
-            width: 100%;
-        }
-
-        #legend {
-            background-color: #fff;
-            padding: 10px;
-            margin: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            position: absolute;
-            bottom: 20px;
-            /* Adjust as needed */
-            left: 20px;
-            /* Adjust as needed */
-            transition: opacity 0.3s ease;
-            opacity: 0;
-        }
-
-        .legend-item {
-            margin-bottom: 5px;
-        }
-
-        .legend-color {
-            width: 20px;
-            height: 20px;
-            display: inline-block;
-            margin-right: 5px;
-        }
-    </style>
 </head>
 
 <body>
@@ -126,10 +81,10 @@
                     <form>
                         <div class="form-row">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Search">
+                                <input type="text" class="form-control" placeholder="Search" id="searchText">
                             </div>
                             <div class="col-auto">
-                                <button type="submit" class="btn btn-primary">Search</button>
+                                <button type="submit" class="btn btn-primary" id="search-button">Search</button>
                             </div>
                         </div>
                     </form>
@@ -294,10 +249,12 @@
         const reportForm = document.getElementById('reportForm');
         const lowerHalf = document.getElementById('lowerHalf');
         const reportBtn = document.getElementById('report');
+        const searchButton = document.getElementById('search-button')
         const map_container = document.querySelector('.map_container');
         const map_tab = document.querySelector('.map_tab');
         const legend = document.querySelector('.legend');
         const searchSection = document.querySelector('.searchSection');
+        let search_t = document.getElementById('searchText');
         var blueIcon = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
         var redIcon = 'https://maps.google.com/mapfiles/kml/shapes/caution.png';
         var greenIcon = 'https://maps.google.com/mapfiles/kml/shapes/campground.png';
@@ -373,6 +330,7 @@
 
         const submitBtn = document.querySelector('.submit-1');
         const confirmation = document.getElementById('report-success');
+        const searchText = document.querySelector('searchText');
         const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('.mdc-snackbar'));
         const bookmarksBtn = document.getElementById('bookmarksBtn');
         const bookmarksForm = document.querySelector('.bookmark');
@@ -585,9 +543,53 @@
 
         });
 
-        // google.maps.event.addListenerOnce(map, 'idle', function () {
-        //     document.getElementById('legend').classList.remove('d-none');
-        // });
+        function addMarker(location) {
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        }
+
+        function geocodeAddress(geocoder, address) {
+            geocoder.geocode({
+                'address': address
+            }, function (results, status) {
+                if (status === 'OK') {
+                    var userLocation = results[0].geometry.location;
+                    addMarker(userLocation);
+                    map.setCenter(userLocation); // Centering the map
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+
+        searchButton.addEventListener('click', e => {
+
+            userInput = document.querySelector('#searchText').value;
+            if (userInput) {
+                var geocoder = new google.maps.Geocoder();
+                geocodeAddress(geocoder, userInput);
+            } else {
+                alert("No address entered. Please enter a valid address.");
+            }
+
+            // Geocode function to convert address to coordinates
+
+
+        })
+
+        search_t.addEventListener('click', e => {
+            reportForm.classList.add('hidden');;
+            lowerHalf.classList.add('hidden');
+            map_container.classList.remove('hidden');
+            legend.classList.remove('hidden');
+            reportForm.classList.add('hidden');
+            // searchSection.classList.remove('hidden');
+
+        })
+
+ 
     </script>
 </body>
 
